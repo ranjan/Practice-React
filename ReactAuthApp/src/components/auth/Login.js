@@ -57,8 +57,9 @@ export default class Login extends Component {
   render() {
     return (
       <div>
+        console.log("State", this.state);
         <h1>Login</h1>
-        <h2>Status: {this.props.loggedInStatus}</h2>
+        {/* <h2>Status: {this.props.loggedInStatus}</h2> */}
         <h1>{!!(this.state.loginErrors)?this.state.loginErrors: this.state.loginErrors}</h1>
 
         <br/><br/>

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, withRouter } from 'react-router-dom';
 import Dashboard from './Dashboard';
 import Home from './Home';
-import axios from 'axios';
 import Login from './auth/Login';
+import axios from 'axios';
 
 class App extends Component {
   
@@ -29,7 +29,7 @@ class App extends Component {
     axios.get("http://localhost:3001/logged_in", {withCredentials: true}).then(response => {
       if(response.data.logged_in){
         this.setState({
-          loggedInStatus: "Logged In",
+          loggedInStatus: "LoggedIn",
           user: response.data.user
         })
       } else if(!response.data.logged_in){
@@ -53,9 +53,9 @@ class App extends Component {
     history.go();
   }
 
-  handleLogin(data){
+  handleLogin(){
     this.setState({
-      loggedInStatus: "Logged In"
+      loggedInStatus: "LoggedIn"
     })
   }
   

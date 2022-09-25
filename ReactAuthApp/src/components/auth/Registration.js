@@ -62,15 +62,15 @@ export default class Registration extends Component {
         <br/><br/>
         <form onSubmit={this.handleSubmit}>
           <label>Email</label>
-          <input type="email" name="email" placeholder='Email' value={this.state.email} onChange={this.handleChange} required1 />
+          <input type="email" name="email" placeholder='Email' value={this.state.email} onChange={this.handleChange} required />
           
           <br/><br/>
           <label>Password</label>
-          <input type="password" name="password" placeholder='Password' value={this.state.password} onChange={this.handleChange} required1 />
+          <input type="password" name="password" placeholder='Password' value={this.state.password} onChange={this.handleChange} required />
 
           <br/><br/>
           <label>Password Confirmation</label>
-          <input type="password" name="password_confirmation" placeholder='Password Confirmation' value={this.state.password_confirmation} onChange={this.handleChange} required1 />
+          <input type="password" name="password_confirmation" placeholder='Password Confirmation' value={this.state.password_confirmation} onChange={this.handleChange} required />
           
           <button type='submit'>Submit</button>
         </form>

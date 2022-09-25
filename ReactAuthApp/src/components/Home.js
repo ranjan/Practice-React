@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Registration from './auth/Registration';
 import axios from 'axios';
 
-export default class Home extends Component {
+class Home extends Component {
   constructor(){
     super();
     this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
@@ -29,14 +29,24 @@ export default class Home extends Component {
   }
 
   render() {
+    var loginButton;
+    console.log(this.props.loggedInStatus);
+    if (this.props.loggedInStatus != 'LoggedIn') {
+      loginButton = <button onClick={() => this.handleLoginClick()}>Login</button>;
+    }else{
+      loginButton = <button onClick={() => this.handleLogoutClick()}>Logout</button>
+      ;
+    }
+
     return (
       <div>
         <h1>Home</h1>
         <h2>Status: {this.props.loggedInStatus}</h2>
-        <button onClick={() => this.handleLogoutClick()}>Logout</button>
-        <button onClick={() => this.handleLoginClick()}>Login</button>
+        {loginButton}
         <Registration handleSuccessfulAuth={this.handleSuccessfulAuth}/>
       </div>
     );
   }
 }
+
+export default Home;
