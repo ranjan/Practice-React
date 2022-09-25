@@ -34,8 +34,11 @@ export default class Login extends Component {
         { withCredentials: true }
       )
       .then(response => {
+        console.log(response.data)
         if (response.data.status === "created") {
           this.props.handleSuccessfulAuth(response.data);
+        } else if(response.data.status === 401) {
+          this.updateErrorMessage("Error: Invalid Credential");
         }
       })
       .catch(error => {
@@ -55,6 +58,7 @@ export default class Login extends Component {
     return (
       <div>
         <h1>Login</h1>
+        <h2>Status: {this.props.loggedInStatus}</h2>
         <h1>{!!(this.state.loginErrors)?this.state.loginErrors: this.state.loginErrors}</h1>
 
         <br/><br/>

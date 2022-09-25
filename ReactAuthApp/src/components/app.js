@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, withRouter } from 'react-router-dom';
 import Dashboard from './Dashboard';
 import Home from './Home';
 import axios from 'axios';
-//import { response } from 'express';
+import Login from './auth/Login';
 
-export default class App extends Component {
+class App extends Component {
   
   constructor(){
     super()
@@ -15,6 +15,7 @@ export default class App extends Component {
     }
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
   }
 
   handleLogout(){
@@ -46,6 +47,12 @@ export default class App extends Component {
     this.checkLoginStatus();
   }
 
+  handleSuccessfulAuth(data){
+    this.handleLogin(data);
+    this.props.history.push("/dashboard")
+    history.go();
+  }
+
   handleLogin(data){
     this.setState({
       loggedInStatus: "Logged In"
@@ -67,6 +74,14 @@ export default class App extends Component {
 
           <Route 
           exact 
+          path={"/login"} 
+          render={props => (
+            <Login {...props} handleSuccessfulAuth={this.handleSuccessfulAuth} loggedInStatus={this.state.loggedInStatus} />
+          )}
+          />
+
+          <Route 
+          exact 
           path={"/dashboard"} 
           render={props => (
             <Dashboard {...props} loggedInStatus={this.state.loggedInStatus} />
@@ -79,3 +94,5 @@ export default class App extends Component {
     );
   }
 }
+
+export default withRouter(App)
