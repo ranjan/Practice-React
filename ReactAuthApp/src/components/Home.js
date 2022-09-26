@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {withRouter} from "react-router-dom"
 import Registration from './auth/Registration';
 import axios from 'axios';
 
@@ -7,16 +8,11 @@ class Home extends Component {
     super();
     this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
     this.handleLogoutClick = this.handleLogoutClick.bind(this);
-    this.handleLoginClick = this.handleLoginClick.bind(this);
   }
 
   handleSuccessfulAuth(data){
     this.props.handleLogin(data);
     this.props.history.push("/dashboard")
-  }
-
-  handleLoginClick(){
-    this.props.history.push("/login")
   }
 
   handleLogoutClick(){
@@ -32,10 +28,9 @@ class Home extends Component {
     var loginButton;
     console.log(this.props.loggedInStatus);
     if (this.props.loggedInStatus != 'LoggedIn') {
-      loginButton = <button onClick={() => this.handleLoginClick()}>Login</button>;
+      loginButton = <button onClick={() => this.props.history.push("/login")}>Login</button>;
     }else{
-      loginButton = <button onClick={() => this.handleLogoutClick()}>Logout</button>
-      ;
+      loginButton = <button onClick={() => this.handleLogoutClick()}>Logout</button>;
     }
 
     return (
@@ -49,4 +44,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default withRouter (Home);
