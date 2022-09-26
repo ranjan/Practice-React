@@ -2,15 +2,14 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 export default class Login extends Component {
+  
   constructor(props){
     super(props);
-
-    this.state= {
+    this.state = {
       email: "",
       password: "",
       loginErrors: ""
     }
-
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -21,6 +20,12 @@ export default class Login extends Component {
     })
   }
 
+  componentDidUpdate(){
+    if (this.props.loggedInStatus == 'LoggedIn'){
+      this.props.history.push("/dashboard");
+    }
+  }
+  
   handleSubmit(event){
      axios
       .post(
@@ -56,10 +61,10 @@ export default class Login extends Component {
   
   render() {
     return (
-      <div>
-        console.log("State", this.state);
+      <div className={`home h-100 d-flex align-items-center justify-content-center`}>
+        <div  style={{ backgroundColor: "yellow", height: "100%" }}>
         <h1>Login</h1>
-        {/* <h2>Status: {this.props.loggedInStatus}</h2> */}
+        { <h2>Status: {this.props.loggedInStatus}</h2> }
         <h1>{!!(this.state.loginErrors)?this.state.loginErrors: this.state.loginErrors}</h1>
 
         <br/><br/>
@@ -74,6 +79,7 @@ export default class Login extends Component {
           
           <button type='submit'>Login</button>
         </form>
+      </div>
       </div>
     );
   }

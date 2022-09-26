@@ -12,7 +12,7 @@ class App extends Component {
   constructor(){
     super()
     this.state = {
-      loggedInStatus: "Not Logged In",
+      loggedInStatus: "NotLoggedIn",
       user: {}
     }
     this.handleLogin = this.handleLogin.bind(this);
@@ -22,7 +22,7 @@ class App extends Component {
 
   handleLogout(){
     this.setState({
-      loggedInStatus: "Not Logged In",
+      loggedInStatus: "NotLoggedIn",
       user: {}
     })
   }
@@ -36,7 +36,7 @@ class App extends Component {
         })
       } else if(!response.data.logged_in){
         this.setState({
-          loggedInStatus: "Not Logged In",
+          loggedInStatus: "NotLoggedIn",
           user: {}
         })
       }
@@ -60,6 +60,8 @@ class App extends Component {
       loggedInStatus: "LoggedIn"
     })
   }
+
+  //authenticated(){}
   
   render() {
     return (
@@ -92,7 +94,7 @@ class App extends Component {
           exact 
           path={"/login"} 
           render={props => (
-            <Login {...props} handleSuccessfulAuth={this.handleSuccessfulAuth} loggedInStatus={this.state.loggedInStatus} />
+            <Login {...props} handleSuccessfulAuth={this.handleSuccessfulAuth} handleLogin={this.handleLogin} loggedInStatus={this.state.loggedInStatus} />
           )}
           />
 
