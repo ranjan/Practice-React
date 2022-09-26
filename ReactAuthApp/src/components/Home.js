@@ -35,8 +35,8 @@ class Home extends Component {
     }
 
     return (
-      <div style={{ backgroundColor: "yellow", height: "100%", width: "400px" }} className={`home h-100 d-flex align-items-center justify-content-center`}>
-        <div>
+      <div className={`home h-100 d-flex align-items-center justify-content-center`}>
+        <div  style={{ backgroundColor: "yellow", height: "100%" }}>
           <h1>Home</h1>
           <h2>Status: {this.props.loggedInStatus}</h2>
           {loginButton}
