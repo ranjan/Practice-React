@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import {withRouter} from "react-router-dom"
+import { withRouter } from "react-router-dom";
 import Registration from './auth/Registration';
 import axios from 'axios';
+
 
 class Home extends Component {
   constructor(){
@@ -34,11 +35,14 @@ class Home extends Component {
     }
 
     return (
-      <div>
-        <h1>Home</h1>
-        <h2>Status: {this.props.loggedInStatus}</h2>
-        {loginButton}
-        <Registration handleSuccessfulAuth={this.handleSuccessfulAuth}/>
+      <div style={{ backgroundColor: "yellow", height: "100%", width: "400px" }} className={`home h-100 d-flex align-items-center justify-content-center`}>
+        <div>
+          <h1>Home</h1>
+          <h2>Status: {this.props.loggedInStatus}</h2>
+          {loginButton}
+          <Registration handleSuccessfulAuth={this.handleSuccessfulAuth}/>
+        </div>
+      
       </div>
     );
   }

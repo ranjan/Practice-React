@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch, withRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, withRouter, Link } from 'react-router-dom';
 import Dashboard from './Dashboard';
 import Home from './Home';
 import Login from './auth/Login';
 import axios from 'axios';
+import "./../style/style.css";
+
 
 class App extends Component {
   
@@ -62,6 +64,20 @@ class App extends Component {
   render() {
     return (
       <div className='app'>
+        <div className='menu'>
+          <ul className="navbar">
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/contact">Contact</Link>
+            </li>
+          </ul>
+        </div>
+
         <BrowserRouter>
         <Switch>
           <Route 

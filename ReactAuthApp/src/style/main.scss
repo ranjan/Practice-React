@@ -21,7 +21,12 @@ body {
     -webkit-tap-highlight-color: transparent;
 }
 
-.app {
+.menu {
+    margin-top: 2rem;
+    display: grid;
+}
+
+.home {
     margin-top: 2rem;
     display: grid;
     justify-items: center;
