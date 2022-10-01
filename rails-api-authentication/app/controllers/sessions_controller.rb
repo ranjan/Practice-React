@@ -25,6 +25,7 @@ class SessionsController < ApplicationController
         user: @current_user
       }
     else
+      Rails.logger.info "false.............."
       render json: {
         logged_in: false
       }
