@@ -7,9 +7,10 @@ const Login = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, seterrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const history = useHistory();
   const { LoggedInStatus, setLoggedInStatus } = useContext(DataContext);
+  const { user, setUser } = useContext(DataContext);
 
 
   const handleSubmit = async (e) => {
@@ -18,14 +19,35 @@ const Login = () => {
 
     try {
         const response = await api.post('/sessions', loginUser);
-        console.log("Response", response)
-        setLoggedInStatus('LoggedIn');
-        history.push('/');
+        if (response.data.status === 401){
+          setLoggedInStatus('LoggedOut');
+          setErrorMessage("Error: Unautorized");
+          setUser({});
+          localStorage.setItem('user', {});
+          localStorage.setItem('LoggedInStatus', 'LoggedOut');
+          
+        }else{
+          setLoggedInStatus('LoggedIn');
+          setUser(response.data.user);
+          localStorage.setItem('user', JSON.stringify(response.data.user));
+          localStorage.setItem('LoggedInStatus', 'LoggedIn');
+          history.push('/');
+        }
     } catch (err) {
         setLoggedInStatus('LoggedOut');
-        seterrorMessage(`Error: ${err.message}`)
+        setErrorMessage(`Error: ${err.message}`);
+        localStorage.setItem('user', {});
+        localStorage.setItem('LoggedInStatus', 'LoggedOut');
     }
   }
+
+  useEffect(() => {
+    const user_obj = localStorage.getItem("user");
+    if (user_obj) {
+      setUser(user_obj);
+      setLoggedInStatus('LoggedIn');
+    } 
+   }, []);
 
   return (
       <main className='NewPost'>
