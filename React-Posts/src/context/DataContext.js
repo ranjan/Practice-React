@@ -7,6 +7,7 @@ export const DataProvider = ({ children }) => {
     const [posts, setPosts] = useState([])
     const [search, setSearch] = useState('');
     const [searchResults, setSearchResults] = useState([]);
+    const [LoggedInStatus, setLoggedInStatus] = useState('LoggedOut');
 
     const { data, fetchError, isLoading } = useAxiosFetch('http://localhost:3500/posts');
 
@@ -26,7 +27,8 @@ export const DataProvider = ({ children }) => {
         <DataContext.Provider value={{
             search, setSearch,
             searchResults, fetchError, isLoading,
-            posts, setPosts
+            posts, setPosts,
+            LoggedInStatus, setLoggedInStatus
         }}>
             {children}
         </DataContext.Provider>
