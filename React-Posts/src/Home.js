@@ -10,7 +10,7 @@ const Home = () => {
        setShowSearch(true);
        mounted.current = true;
        return () => { setShowSearch(false); mounted.current = false; };
-    }, []);
+    }, [setShowSearch]);
 
     return (
         <main className="Home">

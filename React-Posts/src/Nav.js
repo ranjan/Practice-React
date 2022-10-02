@@ -5,33 +5,24 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 const Nav = () => {
-    const { showSearch, setUser, search, setSearch, Authenticated, setAuthenticated } = useContext(DataContext);
+    const { showSearch, setUser, search, setSearch, isAuthenticated, setAuthenticated } = useContext(DataContext);
     const history = useHistory();
 
     const handleLogoutClick = () => {
       axios
         .delete("http://localhost:3500/logout", { withCredentials: true })
         .then(response => {})
-        .catch(error => {
-          console.log(`Error Occured: ${error.message}`)
-        });
+        .catch(error => { console.log(`Error Occured: ${error.message}`) });
       setAuthenticated(false);
       localStorage.clear();
+      setUser({});
       history.push('/login');
     }
-
-    useEffect(() => {
-      const user_obj = localStorage.getItem("user");
-      if (user_obj) {
-        setUser(user_obj);
-        setAuthenticated(true);
-      } 
-    }, []);
 
     return (
         <nav className="Nav">
             <ul>
-              {Authenticated ? (
+              {isAuthenticated() ? (
                 <li><Link onClick={() => handleLogoutClick()}>Logout</Link></li>
               ) : (
                 <li><Link to="/login">Login</Link></li>

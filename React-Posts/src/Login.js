@@ -1,10 +1,10 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import { useHistory } from 'react-router-dom';
 import api from './api/posts';
 import DataContext from './context/DataContext';
 
 const Login = () => {
-  const { Authenticated, setAuthenticated, setUser } = useContext(DataContext);
+  const { UpdateAuth, isAuthenticated } = useContext(DataContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -17,34 +17,18 @@ const Login = () => {
     try {
         const response = await api.post('/sessions', loginUser);
         if (response.data.status === 401){
-          setAuthenticated(false);
           setErrorMessage("Error: Unautorized");
-          setUser({});
-          localStorage.setItem('user', {});
-          localStorage.setItem('Authenticated', false);
+          UpdateAuth(false, {})
           
         }else{
-          setAuthenticated(true);
-          setUser(response.data.user);
-          localStorage.setItem('user', JSON.stringify(response.data.user));
-          localStorage.setItem(Authenticated, true);
+          UpdateAuth(true, response.data.user)
           history.push('/');
         }
     } catch (err) {
-        setAuthenticated(false);
         setErrorMessage(`Error: ${err.message}`);
-        localStorage.setItem('user', {});
-        localStorage.setItem('Authenticated', false);
+        UpdateAuth(false, {})
     }
   }
-
-  useEffect(() => {
-    const user_obj = localStorage.getItem("user");
-    if (user_obj) {
-      setUser(user_obj);
-      setAuthenticated(true);
-    } 
-   }, []);
 
   return (
       <main className='NewPost'>
@@ -52,7 +36,7 @@ const Login = () => {
           <div className="InnerNav">
             <ul>
               <li><h1>Login</h1></li> 
-              <li style={{ float: "right" }}>{Authenticated ? "Logged In" : "Logged Out"}</li>
+              <li style={{ float: "right" }}>{isAuthenticated() ? "Logged In" : "Logged Out"}</li>
             </ul>
           </div>
           <div>  

@@ -10,9 +10,21 @@ export const DataProvider = ({ children }) => {
     const [showSearch, setShowSearch] = useState(false);
     const [Authenticated, setAuthenticated] = useState(false);
     const [user, setUser] = useState();
-
-
     const { data, fetchError, isLoading } = useAxiosFetch('http://localhost:3500/posts');
+
+    const UpdateAuth = (authenticated, user) => {
+      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('Authenticated', authenticated);
+      setAuthenticated(authenticated);
+      setUser(user);
+    }
+
+    const isAuthenticated = () => {
+      if (localStorage.getItem('Authenticated')){
+        return true
+      }
+      return false
+    }
 
     useEffect(() => {
         setPosts(data);
@@ -32,7 +44,8 @@ export const DataProvider = ({ children }) => {
             searchResults, fetchError, isLoading,
             posts, setPosts,
             Authenticated, setAuthenticated, setUser, user, 
-            showSearch, setShowSearch
+            showSearch, setShowSearch,
+            UpdateAuth, isAuthenticated
         }}>
             {children}
         </DataContext.Provider>
