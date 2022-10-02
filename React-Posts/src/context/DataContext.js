@@ -7,7 +7,8 @@ export const DataProvider = ({ children }) => {
     const [posts, setPosts] = useState([])
     const [search, setSearch] = useState('');
     const [searchResults, setSearchResults] = useState([]);
-    const [LoggedInStatus, setLoggedInStatus] = useState('LoggedOut');
+    const [showSearch, setShowSearch] = useState(false);
+    const [Authenticated, setAuthenticated] = useState(false);
     const [user, setUser] = useState();
 
 
@@ -30,7 +31,8 @@ export const DataProvider = ({ children }) => {
             search, setSearch,
             searchResults, fetchError, isLoading,
             posts, setPosts,
-            LoggedInStatus, setLoggedInStatus, setUser, user
+            Authenticated, setAuthenticated, setUser, user, 
+            showSearch, setShowSearch
         }}>
             {children}
         </DataContext.Provider>

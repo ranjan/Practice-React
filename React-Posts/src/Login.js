@@ -9,7 +9,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const history = useHistory();
-  const { LoggedInStatus, setLoggedInStatus } = useContext(DataContext);
+  const { Authenticated, setAuthenticated } = useContext(DataContext);
   const { user, setUser } = useContext(DataContext);
 
 
@@ -20,24 +20,24 @@ const Login = () => {
     try {
         const response = await api.post('/sessions', loginUser);
         if (response.data.status === 401){
-          setLoggedInStatus('LoggedOut');
+          setAuthenticated(false);
           setErrorMessage("Error: Unautorized");
           setUser({});
           localStorage.setItem('user', {});
-          localStorage.setItem('LoggedInStatus', 'LoggedOut');
+          localStorage.setItem('Authenticated', false);
           
         }else{
-          setLoggedInStatus('LoggedIn');
+          setAuthenticated(true);
           setUser(response.data.user);
           localStorage.setItem('user', JSON.stringify(response.data.user));
-          localStorage.setItem('LoggedInStatus', 'LoggedIn');
+          localStorage.setItem(Authenticated, true);
           history.push('/');
         }
     } catch (err) {
-        setLoggedInStatus('LoggedOut');
+        setAuthenticated(false);
         setErrorMessage(`Error: ${err.message}`);
         localStorage.setItem('user', {});
-        localStorage.setItem('LoggedInStatus', 'LoggedOut');
+        localStorage.setItem('Authenticated', false);
     }
   }
 
@@ -45,7 +45,7 @@ const Login = () => {
     const user_obj = localStorage.getItem("user");
     if (user_obj) {
       setUser(user_obj);
-      setLoggedInStatus('LoggedIn');
+      setAuthenticated(true);
     } 
    }, []);
 
@@ -55,7 +55,7 @@ const Login = () => {
           <div className="InnerNav">
             <ul>
               <li><h1>Login</h1></li> 
-              <li style={{ float: "right" }}>{LoggedInStatus}</li>
+              <li style={{ float: "right" }}>{Authenticated ? "Logged In" : "Logged Out"}</li>
             </ul>
           </div>
           <div>  

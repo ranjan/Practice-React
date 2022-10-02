@@ -1,9 +1,16 @@
 import Feed from './Feed';
-import { useContext } from 'react';
+import { useRef, useEffect, useContext } from 'react';
 import DataContext from './context/DataContext';
 
 const Home = () => {
-    const { searchResults, fetchError, isLoading } = useContext(DataContext);
+    const { searchResults, fetchError, isLoading, setShowSearch } = useContext(DataContext);
+    const mounted = useRef(false);
+
+    useEffect(() => {
+       setShowSearch(true);
+       mounted.current = true;
+       return () => { setShowSearch(false); mounted.current = false; };
+    }, []);
 
     return (
         <main className="Home">
