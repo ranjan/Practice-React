@@ -2,28 +2,21 @@ import { Link } from 'react-router-dom';
 import { useEffect, useContext } from 'react';
 import DataContext from './context/DataContext';
 import { useHistory } from 'react-router-dom';
-
 import axios from 'axios';
 
 const Nav = () => {
-    const { search, setSearch } = useContext(DataContext);
-    const { Authenticated, setAuthenticated } = useContext(DataContext);
-    const { showSearch, setShowSearch } = useContext(DataContext);
+    const { showSearch, setUser, search, setSearch, Authenticated, setAuthenticated } = useContext(DataContext);
     const history = useHistory();
-    const { user, setUser } = useContext(DataContext);
-
 
     const handleLogoutClick = () => {
       axios
         .delete("http://localhost:3500/logout", { withCredentials: true })
-        .then(response => {
-          setAuthenticated(false);
-          localStorage.clear();
-        })
+        .then(response => {})
         .catch(error => {
-          setAuthenticated(false);
-          localStorage.clear();
+          console.log(`Error Occured: ${error.message}`)
         });
+      setAuthenticated(false);
+      localStorage.clear();
       history.push('/login');
     }
 
@@ -33,7 +26,7 @@ const Nav = () => {
         setUser(user_obj);
         setAuthenticated(true);
       } 
-     }, []);
+    }, []);
 
     return (
         <nav className="Nav">

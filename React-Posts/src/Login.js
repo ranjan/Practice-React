@@ -4,14 +4,11 @@ import api from './api/posts';
 import DataContext from './context/DataContext';
 
 const Login = () => {
-
+  const { Authenticated, setAuthenticated, setUser } = useContext(DataContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const history = useHistory();
-  const { Authenticated, setAuthenticated } = useContext(DataContext);
-  const { user, setUser } = useContext(DataContext);
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
