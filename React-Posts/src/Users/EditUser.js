@@ -1,13 +1,13 @@
 import React from "react";
 
-const User = () => {
+const EditUser = () => {
 
 
 
 return (
   <main>
-    Show User
+    Edit User
   </main>
 )
 }
-export default User;
+export default EditUser;

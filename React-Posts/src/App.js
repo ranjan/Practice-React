@@ -12,7 +12,9 @@ import Missing from './Missing';
 import { Route, Switch } from 'react-router-dom';
 import { DataProvider } from './context/DataContext';
 import PrivateRoute from './PrivateRoute';
+import Users from './Users/Users'
 import User from './Users/User'
+import EditUser from './Users/EditUser'
 
 function App() {
 
@@ -25,7 +27,9 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/registration" component={Registration} />
           <PrivateRoute component={Home} path="/" exact />
-          <PrivateRoute component={User} path="/users" exact />
+          <PrivateRoute component={Users} path="/users" exact />
+          <PrivateRoute component={User} path="/users/:id" exact />
+          <PrivateRoute component={EditUser} path="/users/edit/:id" exact />
           <PrivateRoute exact path="/post/new" component={NewPost} />
           <PrivateRoute path="/post/edit/:id" component={EditPost} />
           <PrivateRoute path="/post/:id" component={PostPage} />
