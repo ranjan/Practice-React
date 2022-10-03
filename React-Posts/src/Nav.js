@@ -22,14 +22,14 @@ const Nav = () => {
     return (
         <nav className="Nav">
             <ul>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/post">Post</Link></li>
+              <li><Link to="/about">About</Link></li>
               {isAuthenticated() ? (
                 <li><Link onClick={() => handleLogoutClick()}>Logout</Link></li>
               ) : (
                 <li><Link to="/login">Login</Link></li>
               )}
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/post">Post</Link></li>
-              <li><Link to="/about">About</Link></li>
               {showSearch ?
             <form className="searchForm" onSubmit={(e) => e.preventDefault()}>
                 <label htmlFor="search">Search Posts</label>

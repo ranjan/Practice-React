@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import api from './api/posts';
 import DataContext from './context/DataContext';
 
@@ -41,7 +41,7 @@ const Login = () => {
           </div>
           <div>  
             <p className="statusMsg" style={{ color: "red" }}>{errorMessage}</p>
-            <form className="loginForm" onSubmit={handleSubmit}>
+            <form className="Form" onSubmit={handleSubmit}>
               <label htmlFor="postEmail">Email:</label>
               <input
                   id="postEmail"
@@ -61,7 +61,9 @@ const Login = () => {
               <button type="submit">Submit</button>
             </form>
           </div>
+          <div style={{"text-align": "center"}}><Link to="/registration">Register</Link></div>
         </div>
+        
       </main>
   )
 }

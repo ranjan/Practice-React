@@ -7,6 +7,7 @@ import PostPage from './PostPage';
 import EditPost from './EditPost';
 import Login from './Login';
 import About from './About';
+import Registration from './Registration';
 import Missing from './Missing';
 import { Route, Switch } from 'react-router-dom';
 import { DataProvider } from './context/DataContext';
@@ -21,6 +22,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/registration" component={Registration} />
           <Route exact path="/post" component={NewPost} />
           <Route path="/edit/:id" component={EditPost} />
           <Route path="/post/:id" component={PostPage} />
