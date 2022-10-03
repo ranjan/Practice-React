@@ -15,15 +15,12 @@ export const DataProvider = ({ children }) => {
     const UpdateAuth = (authenticated, user) => {
       localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('Authenticated', authenticated);
-      setAuthenticated(authenticated);
-      setUser(user);
+      // setAuthenticated(authenticated);
+      // setUser(user);
     }
 
     const isAuthenticated = () => {
-       
       if (localStorage.getItem('Authenticated')){
-        var user1 = localStorage.getItem('user')
-        console.log('ddddddddddddddddddddddddd',JSON.parse(user1).name)
         return true
       }
       return false

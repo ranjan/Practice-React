@@ -16,8 +16,8 @@ function App() {
 
   return (
     <div className="App">
-      <Header title="React JS Blog" />
       <DataProvider>
+      <Header title="Blog" />
         <Nav />
         <Switch>
           <Route exact path="/" component={Home} />
