@@ -7,7 +7,6 @@ export const DataProvider = ({ children }) => {
     const [posts, setPosts] = useState([])
     const [search, setSearch] = useState('');
     const [searchResults, setSearchResults] = useState([]);
-    const [showSearch, setShowSearch] = useState(false);
     const [Authenticated, setAuthenticated] = useState(false);
     const [user, setUser] = useState();
     const { data, fetchError, isLoading } = useAxiosFetch('http://localhost:3500/posts');
@@ -44,7 +43,6 @@ export const DataProvider = ({ children }) => {
             searchResults, fetchError, isLoading,
             posts, setPosts,
             Authenticated, setAuthenticated, setUser, user, 
-            showSearch, setShowSearch,
             UpdateAuth, isAuthenticated
         }}>
             {children}

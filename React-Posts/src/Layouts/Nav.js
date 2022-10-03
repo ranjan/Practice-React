@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 const Nav = () => {
-    const { showSearch, setUser, search, setSearch, isAuthenticated, setAuthenticated } = useContext(DataContext);
+    const { setUser, isAuthenticated, setAuthenticated } = useContext(DataContext);
     const history = useHistory();
 
     const handleLogoutClick = () => {
@@ -30,18 +30,6 @@ const Nav = () => {
               ) : (
                 <li><Link to="/login">Login</Link></li>
               )}
-              {showSearch ?
-            <form className="searchForm" onSubmit={(e) => e.preventDefault()}>
-                <label htmlFor="search">Search Posts</label>
-                <input
-                    id="search"
-                    type="text"
-                    placeholder="Search Posts"
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                />
-            </form>
-           : '' }
             </ul>
         </nav>
     )
