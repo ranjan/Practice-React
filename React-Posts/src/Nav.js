@@ -23,7 +23,7 @@ const Nav = () => {
         <nav className="Nav">
             <ul>
               <li><Link to="/">Home</Link></li>
-              <li><Link to="/post">Post</Link></li>
+              <li><Link to="/post/new">Post</Link></li>
               <li><Link to="/about">About</Link></li>
               {isAuthenticated() ? (
                 <li><Link onClick={() => handleLogoutClick()}>Logout</Link></li>

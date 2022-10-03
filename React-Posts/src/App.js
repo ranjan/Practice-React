@@ -11,6 +11,7 @@ import Registration from './Registration';
 import Missing from './Missing';
 import { Route, Switch } from 'react-router-dom';
 import { DataProvider } from './context/DataContext';
+import PrivateRoute from './PrivateRoute';
 
 function App() {
 
@@ -20,12 +21,12 @@ function App() {
       <Header title="Blog" />
         <Nav />
         <Switch>
-          <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/registration" component={Registration} />
-          <Route exact path="/post" component={NewPost} />
-          <Route path="/edit/:id" component={EditPost} />
-          <Route path="/post/:id" component={PostPage} />
+          <PrivateRoute component={Home} path="/" exact />
+          <PrivateRoute exact path="/post/new" component={NewPost} />
+          <PrivateRoute path="/edit/:id" component={EditPost} />
+          <PrivateRoute path="/post/:id" component={PostPage} />
           <Route path="/about" component={About} />
           <Route path="*" component={Missing} />
         </Switch>
