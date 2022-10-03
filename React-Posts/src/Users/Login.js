@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { Link, useHistory } from 'react-router-dom';
-import api from './api/posts';
-import DataContext from './context/DataContext';
+import api from './../api/posts';
+import DataContext from './../context/DataContext';
 
 const Login = () => {
   const { UpdateAuth, isAuthenticated } = useContext(DataContext);

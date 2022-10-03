@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useContext } from 'react';
-import DataContext from './context/DataContext';
+import DataContext from '../context/DataContext';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 

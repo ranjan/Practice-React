@@ -1,4 +1,4 @@
-import Feed from './Feed';
+import Feed from './Posts/Feed';
 import { useRef, useEffect, useContext } from 'react';
 import DataContext from './context/DataContext';
 

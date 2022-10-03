@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from 'react-router-dom';
-import DataContext from './context/DataContext';
+import DataContext from './../context/DataContext';
 import axios from "axios";
 
 
