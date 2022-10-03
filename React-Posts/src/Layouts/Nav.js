@@ -1,7 +1,6 @@
-import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import DataContext from '../context/DataContext';
-import { useHistory } from 'react-router-dom';
+import { useHistory, NavLink, Link } from 'react-router-dom';
 import axios from 'axios';
 
 const Nav = () => {
@@ -22,14 +21,14 @@ const Nav = () => {
     return (
         <nav className="Nav">
             <ul>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/post/new">Post</Link></li>
-              <li><Link to="/users">User</Link></li>
-              <li><Link to="/about">About</Link></li>
+              <li><NavLink exact to="/">Home</NavLink></li>
+              <li><NavLink to="/post/new">Post</NavLink></li>
+              <li><NavLink to="/users">User</NavLink></li>
+              <li><NavLink to="/about">About</NavLink></li>
               {isAuthenticated() ? (
-                <li><Link onClick={() => handleLogoutClick()}>Logout</Link></li>
+                <li><Link to="#" onClick={() => handleLogoutClick()}>Logout</Link></li>
               ) : (
-                <li><Link to="/login">Login</Link></li>
+                <li><NavLink to="/login">Login</NavLink></li>
               )}
             </ul>
         </nav>

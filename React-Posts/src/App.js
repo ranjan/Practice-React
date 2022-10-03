@@ -27,7 +27,7 @@ function App() {
           <PrivateRoute component={Home} path="/" exact />
           <PrivateRoute component={User} path="/users" exact />
           <PrivateRoute exact path="/post/new" component={NewPost} />
-          <PrivateRoute path="/edit/:id" component={EditPost} />
+          <PrivateRoute path="/post/edit/:id" component={EditPost} />
           <PrivateRoute path="/post/:id" component={PostPage} />
           <Route path="/about" component={About} />
           <Route path="*" component={Missing} />
