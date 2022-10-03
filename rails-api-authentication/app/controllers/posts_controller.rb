@@ -28,7 +28,6 @@ class PostsController < ApplicationController
     render json: {}      
   end
 
-
   def update
     @post = Post.find(params[:id])
     @post.update(
@@ -43,7 +42,5 @@ class PostsController < ApplicationController
       render json: { status: 500 }
     end
   end
-
-
 
 end

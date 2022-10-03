@@ -61,7 +61,7 @@ const Login = () => {
               <button type="submit">Submit</button>
             </form>
           </div>
-          <div style={{"text-align": "center"}}><Link to="/registration">Register</Link></div>
+          <div style={{"textAlign": "center"}}><Link to="/registration">Register</Link></div>
         </div>
         
       </main>

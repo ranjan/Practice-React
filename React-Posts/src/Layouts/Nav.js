@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import DataContext from '../context/DataContext';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
@@ -24,6 +24,7 @@ const Nav = () => {
             <ul>
               <li><Link to="/">Home</Link></li>
               <li><Link to="/post/new">Post</Link></li>
+              <li><Link to="/users">User</Link></li>
               <li><Link to="/about">About</Link></li>
               {isAuthenticated() ? (
                 <li><Link onClick={() => handleLogoutClick()}>Logout</Link></li>

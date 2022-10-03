@@ -17,10 +17,4 @@ class RegistrationsController < ApplicationController
     end
   end
 
-  def index
-    render json: {
-        logged_in: true,
-        user: User.first
-      }
-  end
 end
