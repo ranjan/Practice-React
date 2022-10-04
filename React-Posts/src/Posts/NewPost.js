@@ -20,7 +20,7 @@ const NewPost = () => {
             setPosts(allPosts);
             setPostTitle('');
             setPostBody('');
-            history.push('/');
+            history.push('/posts');
         } catch (err) {
             console.log(`Error: ${err.message}`);
         }

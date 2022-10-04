@@ -15,6 +15,7 @@ import PrivateRoute from './PrivateRoute';
 import Users from './Users/Users'
 import User from './Users/User'
 import EditUser from './Users/EditUser'
+import Posts from './Posts/Posts';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/registration" component={Registration} />
           <PrivateRoute component={Home} path="/" exact />
+          <PrivateRoute component={Posts} path="/posts" exact />
           <PrivateRoute component={Users} path="/users" exact />
           <PrivateRoute component={User} path="/users/:id" exact />
           <PrivateRoute component={EditUser} path="/users/edit/:id" exact />

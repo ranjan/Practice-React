@@ -22,7 +22,7 @@ const Nav = () => {
         <nav className="Nav">
             <ul>
               <li><NavLink exact to="/">Home</NavLink></li>
-              <li><NavLink to="/post/new">Post</NavLink></li>
+              <li><NavLink to="/posts">Post</NavLink></li>
               <li><NavLink to="/users">User</NavLink></li>
               <li><NavLink to="/about">About</NavLink></li>
               {isAuthenticated() ? (

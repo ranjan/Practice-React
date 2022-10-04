@@ -14,7 +14,7 @@ const PostPage = () => {
             await api.delete(`/posts/${id}`);
             const postsList = posts.filter(post => post.id !== id);
             setPosts(postsList);
-            history.push('/');
+            history.push('/posts');
         } catch (err) {
             console.log(`Error: ${err.message}`);
         }
