@@ -3,27 +3,33 @@ import { useHistory } from 'react-router-dom';
 import DataContext from './../context/DataContext';
 import axios from "axios";
 
-
 const Registration = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
-  const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const { UpdateAuth } = useContext(DataContext);  
   const [errorMessage, setErrorMessage] = useState('');
   const history = useHistory();
+
+  const [inputField , setInputField] = useState({
+    name: '',
+    email: '',
+    password: '',
+    password_confirmation: ''
+  })
+
+  const inputsHandler = (e) =>{
+    const { name, value } = e.target;
+    setInputField((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));  
+  }
   
   const handleSubmit = (e) => {
+    console.log(inputField)
     axios
       .post(
         "http://localhost:3500/registrations",
         {
-          user: {
-            name: name,
-            email: email,
-            password: password,
-            password_confirmation: passwordConfirmation
-          }
+          user: inputField
         },
         { withCredentials: true }
       )
@@ -51,8 +57,8 @@ const Registration = () => {
             type="text"
             name="name"
             placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={inputField.name}
+            onChange={inputsHandler} 
             required
           />
 
@@ -61,8 +67,8 @@ const Registration = () => {
             type="email"
             name="email"
             placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={inputField.email}
+            onChange={inputsHandler}
             required
           />
 
@@ -71,18 +77,18 @@ const Registration = () => {
             type="password"
             name="password"
             placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={inputField.password}
+            onChange={inputsHandler}
             required
           />
 
           <label htmlFor="postCPassword">Password Confirmation:</label>
           <input
             type="password"
-            name="passwordConfirmation"
-            placeholder="PassworConfirmation"
-            value={passwordConfirmation}
-            onChange={(e) => {setPasswordConfirmation(e.target.value)}}
+            name="password_confirmation"
+            placeholder="Password Confirmation"
+            value={inputField.password_confirmation}
+            onChange={inputsHandler}
             required
           />
 
